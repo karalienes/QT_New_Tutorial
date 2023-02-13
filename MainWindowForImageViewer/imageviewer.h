@@ -1,7 +1,16 @@
 #ifndef IMAGEVIEWER_H
 #define IMAGEVIEWER_H
 
+#include "qlabel.h"
+#include "qscrollarea.h"
 #include <QMainWindow>
+#include <QDebug>
+#include <QFile>
+#include <QDir>
+#include <QFileDialog>
+#include <QMessageBox>
+#include <QDateTime>
+#include <QScrollBar>
 
 
 //The example demonstrates how QLabel's ability to scale its contents (QLabel::scaledContents),
@@ -30,6 +39,35 @@ public:
 
 private:
     Ui::ImageViewer *ui;
+    QLabel *imageLabel;
+    QScrollArea *scrollArea;
+    QAction *openAct;
+    QAction *printAct;
+    QAction *exitAct;
+    QAction *zoomInAct;
+    QAction *zoomOutAct;
+    QAction *normalSizeAct;
+    QAction *fitToWindowAct;
+    QAction *aboutAct;
+    QAction *aboutQtAct;
+
+    void updateActions();
+    void scaleImage(double factor);
+    void adjustScrollBar(QScrollBar *scrollBar, double factor);
+
+    double scaleFactor;
+
+
+public slots:
+    void open();
+    void print();
+    void close();
+    void zoomIn();
+    void zoomOut();
+    void normalSize();
+    void fitToWindow();
+    void about();
+    void aboutQt();
 };
 
 #endif // IMAGEVIEWER_H
