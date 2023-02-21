@@ -2,11 +2,7 @@
 #define MAINWINDOW_H
 
 #include <QMainWindow>
-#include <QFile>
-#include <QDataStream>
-#include <QString>
-#include <QMap>
-#include <QDebug>
+#include <QPainter>
 
 QT_BEGIN_NAMESPACE
 namespace Ui { class MainWindow; }
@@ -19,11 +15,13 @@ class MainWindow : public QMainWindow
 public:
     MainWindow(QWidget *parent = nullptr);
     ~MainWindow();
-    void Save(QString filename);
-    void Load(QString filename);
 
 private:
     Ui::MainWindow *ui;
-    QString filename_obj = "/home/karali/Documents/QT_New_Tutorial/QFile_Serialization_Example/sample.txt";
+protected:
+    //We will override QWidget::paintEvent(). That's because whenever there is a paint event, we can draw whatever we want.
+    //In other words, we let Qt know what to draw on our dialog box at the paint event.
+
+    void paintEvent(QPaintEvent *e);
 };
 #endif // MAINWINDOW_H
